@@ -1,40 +1,9 @@
-import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import useFetchCountry from "../hooks/useFetchCountry"; // Importamos el hook 
 
 function CountryDetailPage() {
     const { code } = useParams();
-
-    const [country, setCountry] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-
-    useEffect(() => {
-        async function fetchCountry() {
-            try {
-                setLoading(true);
-                setError(null);
-
-                // Llamado a la API pero especificando codigo de país específico
-                const response = await fetch(
-                    `https://restcountries.com/v3.1/alpha/${code}?fields=cca3,name,region,subregion,capital,population,flags,flag`
-                );
-
-                if (!response.ok) {
-                    throw new Error('Error al cargar el detalle del país');
-                }
-
-                const data = await response.json();
-                const countryData = Array.isArray(data) ? data[0] : data;
-                setCountry(countryData);
-            } catch (err) {
-                setError(err.message);
-            } finally {
-                setLoading(false);
-            }
-        }
-
-        fetchCountry();
-    }, [code]);
+    const { country, loading, error } = useFetchCountry(code); // Utilizamos el hook
 
     if (loading) {
         return <p>Cargando detalle del país...</p>;

@@ -1,41 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import useFetchCountries from '../hooks/useFetchCountries'; // Importamos el hook creado para utilizarlo acá
 
 function CountriesPage() {
-    // Se definen los 3 estados posibles --> Listado de países, cargando, error
-    const [countries, setCountries] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const { countries, loading, error } = useFetchCountries(); // Utilizamos el hoook
     const [expandedRegion, setExpandedRegion] = useState(null);
-
-    useEffect(() => {
-        // Función asincrónica para cargar países
-        async function fetchCountries() {
-            try {
-                // Inicialmente se definen los estados como cargando
-                setLoading(true);
-                setError(null);
-
-                // Se espera la respuesta de la API, si hay error, se muestra el mensaje
-                const response = await fetch(
-                    'https://restcountries.com/v3.1/all?fields=cca3,name,region,flag'
-                );
-                if (!response.ok) {
-                    throw new Error('Error al cargar los países');
-                }
-
-                // Se crea la constante data que tiene la respuesta de la API
-                const data = await response.json();
-                setCountries(data);
-            } catch (err) {
-                setError(err.message);
-            } finally {
-                setLoading(false);
-            }
-        }
-
-        fetchCountries();
-    }, []);
 
     // Mensaje a mostrar en pantalla si está cargando o si hay un error
     if (loading) {
@@ -67,7 +36,7 @@ function CountriesPage() {
         <section>
             <h1>Listado de países</h1>
             <p>Total de países: {countries.length}</p>
-            
+
             {/* Agrupar los países por región/continente */}
             {regions.map((region) => (
                 <div key={region}>
@@ -88,8 +57,10 @@ function CountriesPage() {
                                             <Link
                                                 to={`/countries/${country.cca3}`}
                                             >
-                                                
-                                                {country.name?.common}{' ('}{country.flag}{')'} 
+                                                {country.name?.common}
+                                                {' ('}
+                                                {country.flag}
+                                                {')'}
                                             </Link>
                                         </li>
                                     ))}
