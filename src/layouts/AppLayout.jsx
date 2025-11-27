@@ -1,17 +1,33 @@
-import { Link, Outlet } from "react-router-dom"; // Importar desde librería de React Router
+import { Link, Outlet } from "react-router-dom";
 
 function AppLayout() {
   return (
     <div>
-      <header style={{ padding: "1rem", borderBottom: "1px solid #ccc" }}>
-        <nav style={{ display: "flex", gap: "1rem" }}>
-          <Link to="/">Inicio</Link>
-          <Link to="/countries">Países</Link>
-        </nav>
-      </header>
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark w-100">
+        <div className="container-fluid">
+          <Link className="navbar-brand" to="/">
+            Explorador de Países
+          </Link>
 
-      <main style={{ padding: "1rem" }}>
-        {/* Aquí React insertará las páginas según la ruta */}
+          <div className="collapse navbar-collapse show">
+            <ul className="navbar-nav ms-auto">
+              <li className="nav-item">
+                <Link className="nav-link" to="/">
+                  Inicio
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/countries">
+                  Países
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      {/* Acá se mostrarán las páginas según la ruta sleeccionada */}
+      <main className="container my-4">
         <Outlet />
       </main>
     </div>

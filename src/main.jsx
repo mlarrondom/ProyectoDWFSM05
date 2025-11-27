@@ -1,3 +1,7 @@
+//Importar Bootstrap
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./index.css";
+
 import React from 'react'; // Importa React (necesario para JSX)
 import ReactDOM from 'react-dom/client'; // Importa ReactDOM para renderizar en el navegador
 import {
