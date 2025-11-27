@@ -235,5 +235,5 @@ Este proyecto fue desplegado usando **Netlify**, conectado directamente desde Gi
 ## 11. Comentarios adicionales
 
 ✨ Proyecto desarrollado de manera individual, con apoyo de ChatGPT como tutor técnico para aclarar dudas, aprender cosas nuevas y guía en el desarrollo del proyecto.  
-🧠 Se aplicaron conceptos claves: SPA, hooks, custom hooks, router, manejo de errores, fetch, despliegue.  
+🧠 Se aplicaron conceptos claves: Hooks, custom hooks, router, manejo de errores, fetch, despliegue.  
 📄 README generado por **Mauricio Larrondo** con asistencia de ChatGPT.
