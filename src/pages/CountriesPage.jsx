@@ -82,10 +82,14 @@ function CountriesPage() {
                                     className="btn btn-dark w-100 text-start"
                                     onClick={() => toggleRegion(region)}
                                 >
-                                    {region}{' '}
-                                    <span className="badge bg-light text-dark ms-2">
+                                    <span className="badge bg-light text-dark ms-2 me-2">
                                         {countriesInRegion.length}
                                     </span>
+                                    {' '}{' '}{' '}   
+                                    <span> 
+                                      {region}
+                                    </span>
+                                    
                                 </button>
 
                                 {/* Lista de países de este continente (solo si está expandida) */}
@@ -100,10 +104,7 @@ function CountriesPage() {
                                                     to={`/countries/${country.cca3}`}
                                                     className="text-decoration-none"
                                                 >
-                                                    {country.name?.common}
-                                                    {' ('}
-                                                    {country.flag}
-                                                    {')'}
+                                                    {country.flag}{' '}{country.name?.common}
                                                 </Link>
                                                 <span className="badge bg-outline-secondary">
                                                     {country.cca3}
